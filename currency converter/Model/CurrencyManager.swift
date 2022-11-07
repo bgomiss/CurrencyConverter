@@ -31,7 +31,7 @@ struct CurrencyManager {
     func fetchRates(from: String, to: String, amount: String) {
         
         let urlString = "\(currencyUrl)&from=\(from)&to=\(to)&amount=\(amount)&rapidapi-key=\(api.api)"
-        print(urlString)
+        
         //performRequest(with: urlString)
         
        // func performRequest(with urlString: String) {
