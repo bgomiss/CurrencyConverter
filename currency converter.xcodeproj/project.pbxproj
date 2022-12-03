@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1C0C562E2913BF320093D2FE /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0C562D2913BF320093D2FE /* ApiKey.swift */; };
-		1C28357329322FA4000CC1B9 /* CurrencySelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C28357229322FA4000CC1B9 /* CurrencySelectorViewController.swift */; };
 		1C8B8017290C1B9100D0BDF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8B8016290C1B9100D0BDF1 /* AppDelegate.swift */; };
 		1C8B8019290C1B9100D0BDF1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8B8018290C1B9100D0BDF1 /* SceneDelegate.swift */; };
 		1C8B801B290C1B9100D0BDF1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8B801A290C1B9100D0BDF1 /* ViewController.swift */; };
@@ -17,11 +16,11 @@
 		1C8B8023290C1B9200D0BDF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C8B8021290C1B9200D0BDF1 /* LaunchScreen.storyboard */; };
 		1C8B802B290C210B00D0BDF1 /* CurrencyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8B802A290C210B00D0BDF1 /* CurrencyData.swift */; };
 		1C8B802D290C489800D0BDF1 /* CurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8B802C290C489800D0BDF1 /* CurrencyManager.swift */; };
+		1C9910F7293BEF89001F5219 /* CurrencySelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9910F6293BEF89001F5219 /* CurrencySelectorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1C0C562D2913BF320093D2FE /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
-		1C28357229322FA4000CC1B9 /* CurrencySelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CurrencySelectorViewController.swift; path = "currency converter/View/CurrencySelectorViewController.swift"; sourceTree = SOURCE_ROOT; };
 		1C8B8013290C1B9100D0BDF1 /* currency converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "currency converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C8B8016290C1B9100D0BDF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C8B8018290C1B9100D0BDF1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -32,6 +31,7 @@
 		1C8B8024290C1B9200D0BDF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C8B802A290C210B00D0BDF1 /* CurrencyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyData.swift; sourceTree = "<group>"; };
 		1C8B802C290C489800D0BDF1 /* CurrencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyManager.swift; sourceTree = "<group>"; };
+		1C9910F6293BEF89001F5219 /* CurrencySelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySelectorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +58,8 @@
 		1C0C562B2913BED70093D2FE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1C28357229322FA4000CC1B9 /* CurrencySelectorViewController.swift */,
 				1C8B801A290C1B9100D0BDF1 /* ViewController.swift */,
+				1C9910F6293BEF89001F5219 /* CurrencySelectorViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -177,7 +177,7 @@
 				1C8B801B290C1B9100D0BDF1 /* ViewController.swift in Sources */,
 				1C8B802D290C489800D0BDF1 /* CurrencyManager.swift in Sources */,
 				1C8B8017290C1B9100D0BDF1 /* AppDelegate.swift in Sources */,
-				1C28357329322FA4000CC1B9 /* CurrencySelectorViewController.swift in Sources */,
+				1C9910F7293BEF89001F5219 /* CurrencySelectorViewController.swift in Sources */,
 				1C8B802B290C210B00D0BDF1 /* CurrencyData.swift in Sources */,
 				1C0C562E2913BF320093D2FE /* ApiKey.swift in Sources */,
 				1C8B8019290C1B9100D0BDF1 /* SceneDelegate.swift in Sources */,

@@ -40,6 +40,7 @@ class ViewController: UIViewController {
         
         amountText.delegate = self
         currencyManager.delegate = self
+       
         
         
     }
