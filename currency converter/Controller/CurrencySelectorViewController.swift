@@ -21,7 +21,11 @@ class CurrencySelectorViewController: UIViewController {
     
     let reusableCell = "ReusableCell"
     
-    let currencyArray = ["🇪🇺  EUR", "\u{1F1FA}\u{1F1F8}  USD", "\u{1F1F9}\u{1F1F7}  TRY", "\u{1F1EC}\u{1F1E7}  GBP", "\u{1F1EF}\u{1F1F5}  JPY", "\u{1F1E8}\u{1F1E6}  CAD", "\u{1F1E6}\u{1F1FA}  AUD", "\u{1F1E7}\u{1F1EC}  BGN", "\u{1F1F7}\u{1F1FA}  RUB", "\u{1F1F3}\u{1F1F4}  NOK", "\u{1F1E8}\u{1F1F3}  CNY", "\u{1F1E8}\u{1F1ED}  CHF", "\u{1F1F2}\u{1F1FD}  MXN"]
+    let currencyArray = ["EUR", "USD", "TRY", "GBP", "JPY", "CAD", "AUD", "BGN", "RUB", "NOK", "CNY", "CHF", "MXN"]
+    
+    let extraInfoArray: [String] = ["EURO", "American Dollar", "Turkish Lira","British Pound","Japanese Yen","Canadian Dollar","Australian Dollar","Bulgarian Lev","Russian Ruble","Norwegian Krone","Chinese Yuan","Swiss Franc", "Mexican Peso"]
+    
+    let flagsArray = ["🇪🇺", "🇺🇸", "🇹🇷", "🇬🇧", "🇯🇵", "🇨🇦", "🇦🇺", "🇧🇬", "🇷🇺", "🇳🇴", "🇨🇳", "🇨🇭", "🇲🇽"]
     
     var filteredData: [String]!
     
@@ -50,7 +54,8 @@ extension CurrencySelectorViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: reusableCell, for: indexPath)
-        cell.textLabel?.text = filteredData[indexPath.row]
+        cell.textLabel?.text = "\(flagsArray[indexPath.row]) \(filteredData[indexPath.row]) \(extraInfoArray[indexPath.row])"
+        //cell.textLabel?.text = filteredData[indexPath.row]
         return cell
     }
     

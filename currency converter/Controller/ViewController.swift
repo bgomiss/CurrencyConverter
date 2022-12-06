@@ -120,7 +120,6 @@ class ViewController: UIViewController {
      print(error)
      }
      
-     
      func didUpdateCurrency(_ currencyManager: String) {
      
      DispatchQueue.main.async {
