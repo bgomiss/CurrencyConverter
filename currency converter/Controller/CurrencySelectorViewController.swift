@@ -8,11 +8,11 @@
 import UIKit
 
 protocol FromCurrencySelectorDelegate: AnyObject {
-    func didGetCurrencyCode(from: String)
+    func didGetCurrencyCode(from: String, fromImage: String)
     
 }
 protocol ToCurrencySelectorDelegate: AnyObject {
-    func didGetCurrencyCode(to: String)
+    func didGetCurrencyCode(to: String, toImage: String)
 }
 class CurrencySelectorViewController: UIViewController {
     
@@ -68,11 +68,11 @@ extension CurrencySelectorViewController: UITableViewDelegate {
         
         if fromCurrencySelection != nil {
             
-            fromCurrencySelection.didGetCurrencyCode(from: currencyArray[indexPath.row])
+            fromCurrencySelection.didGetCurrencyCode(from: currencyArray[indexPath.row], fromImage: flagsArray[indexPath.row])
             
         } else {
             
-            toCurrencySelection.didGetCurrencyCode(to: currencyArray[indexPath.row])
+            toCurrencySelection.didGetCurrencyCode(to: currencyArray[indexPath.row], toImage: flagsArray[indexPath.row])
             
         }
         dismiss(animated: true, completion: nil)

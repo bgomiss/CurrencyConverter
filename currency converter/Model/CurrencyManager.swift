@@ -20,7 +20,7 @@ struct CurrencyManager {
     var api = ApiKey()
     var delegate: CurrencyManagerDelegate?
     
-    let currencyUrl = "https://currency-converter5.p.rapidapi.com/currency/convert?format=json"
+    let currencyUrl = "https://api.apilayer.com/currency_data/convert?"
     
     /* let headers = [
      "X-RapidAPI-Key": "1f5d035635msh5a1a9c566f3d4cdp1c793cjsn2b7bdad60fe2",
@@ -30,7 +30,7 @@ struct CurrencyManager {
     /*let request = NSMutableURLRequest(url: NSURL(string: "https://currency-converter5.p.rapidapi.com/currency/convert?format=json&from=USD&to=TRY&amount=1")! as URL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)*/
     func fetchRates(from: String, to: String, amount: String) {
         
-        let urlString = "\(currencyUrl)&from=\(from)&to=\(to)&amount=\(amount)&rapidapi-key=\(api.api)"
+        let urlString = "\(currencyUrl)from=\(from)&to=\(to)&amount=\(amount)&apikey=\(api.api)"
         
         //performRequest(with: urlString)
         
@@ -74,15 +74,17 @@ struct CurrencyManager {
                 do {
                     let decodedData = try decoder.decode(CurrencyData.self, from: currencyData)
                     
-                    let result = decodedData.rates[toCurrency]?.rate_for_amount ?? "Cannot Find Data"
+                    let result = decodedData.result
                     
-                    let finalResult = Double(result)
+                   // let finalResult = Double(result)
+                   
                     
-                    return String(format: "%.2f", finalResult!)
+                    return String(format: "%.2f", result)
+                    //
                     
                 } catch {
                     delegate?.didFailWithError(error: error)
-                    return error.localizedDescription
+                    return nil
                 }
                 
             }

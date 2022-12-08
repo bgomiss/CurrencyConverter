@@ -18,9 +18,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var fromLabel: UILabel!
     
-    @IBOutlet weak var fromImage: UIImageView!
+    @IBOutlet weak var fromImage: UILabel!
     
-    @IBOutlet weak var toImage: UIImageView!
+    @IBOutlet weak var toImage: UILabel!
     
     @IBOutlet weak var toLabel: UILabel!
     
@@ -132,12 +132,14 @@ class ViewController: UIViewController {
      
 
 extension ViewController: FromCurrencySelectorDelegate, ToCurrencySelectorDelegate {
-    func didGetCurrencyCode(from: String) {
+    func didGetCurrencyCode(from: String, fromImage: String) {
         fromLabel.text = from
+        self.fromImage.text = fromImage
         self.from = from
         }
-    func didGetCurrencyCode(to: String) {
+    func didGetCurrencyCode(to: String, toImage: String) {
         toLabel.text = to
+        self.toImage.text = toImage
         self.to = to
     }
 }

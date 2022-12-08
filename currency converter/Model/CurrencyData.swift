@@ -10,19 +10,25 @@ import Foundation
 
 struct CurrencyData: Codable {
     
-    let status: String
-    let base_currency_code: String
-    let base_currency_name: String
-    let amount: String
-    let updated_date: String
-    let rates: [String: Currency]
+   // let status: String
+   // let base_currency_code: String
+   // let base_currency_name: String
+   // let amount: String
+   // let updated_date: String
+   // let rates: [String: Currency]
+    let success: Bool
+    let query: Currency
+    let result: Double
 }
     
 struct Currency: Codable {
     
     //let currencyName: String
-    let rate: String
-    let rate_for_amount: String
+   // let rate: String
+   // let rate_for_amount: String
+    let from: String
+    let to: String
+    let amount: Int
 }
 
 /*enum CodingKeys: String, CodingKey {

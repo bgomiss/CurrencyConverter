@@ -35,8 +35,14 @@
                                                     <action selector="amountChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="pFm-4F-4WU"/>
                                                 </connections>
                                             </textField>
-                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🇪🇺  EUR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ek0-Tx-vuA" userLabel="from Label">
-                                                <rect key="frame" x="273" y="0.0" width="64.333333333333314" height="80"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🇪🇺" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4k-H2-g63" userLabel="From Image">
+                                                <rect key="frame" x="271.33333333333331" y="0.0" width="23" height="80"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EUR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ek0-Tx-vuA" userLabel="from Label">
+                                                <rect key="frame" x="306" y="0.0" width="32.666666666666686" height="80"/>
                                                 <color key="backgroundColor" red="0.24313727020000001" green="0.31372550129999999" blue="0.48627454040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <color key="tintColor" red="0.070588238540000001" green="0.074509806930000005" blue="0.070588238540000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
@@ -74,8 +80,14 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                             </textField>
-                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🇹🇷  TRY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZsI-Lp-PZs">
-                                                <rect key="frame" x="273.33333333333331" y="0.0" width="63.333333333333314" height="80"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🇹🇷" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Cv-ZL-bjZ" userLabel="To Image">
+                                                <rect key="frame" x="271.66666666666669" y="0.0" width="23" height="80"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZsI-Lp-PZs">
+                                                <rect key="frame" x="306.66666666666669" y="0.0" width="31.666666666666686" height="80"/>
                                                 <color key="backgroundColor" red="0.24313727020000001" green="0.31372550129999999" blue="0.48627454040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <color key="tintColor" red="0.070588238540000001" green="0.074509806930000005" blue="0.070588238540000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
@@ -123,7 +135,9 @@
                     <connections>
                         <outlet property="amountText" destination="Dj3-bG-hUh" id="2Yc-u7-CGy"/>
                         <outlet property="amountText2" destination="VyP-bg-eI3" id="tRd-mf-REh"/>
+                        <outlet property="fromImage" destination="D4k-H2-g63" id="2Re-a5-jjh"/>
                         <outlet property="fromLabel" destination="ek0-Tx-vuA" id="NHH-pD-cjK"/>
+                        <outlet property="toImage" destination="0Cv-ZL-bjZ" id="xGh-Gk-k6I"/>
                         <outlet property="toLabel" destination="ZsI-Lp-PZs" id="sT5-GR-nm2"/>
                         <segue destination="yyM-JM-JHr" kind="presentation" identifier="currencySelector" id="qPD-mH-xKR"/>
                     </connections>
