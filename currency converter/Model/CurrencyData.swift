@@ -31,10 +31,15 @@ struct Currency: Codable {
     let amount: Int
 }
 
-/*enum CodingKeys: String, CodingKey {
-        case currencyName = "currency_name"
-        case rate
-        case rateForAmount = "rate_for_amount"
-    }
+struct APIResult: Codable {
+    let timeseries: Bool
+    let success: Bool
+    let startDate: String
+    let endDate: String
+    let base: String
+    var rates: [String:[String:Double]]
+}
 
-*/
+
+
+

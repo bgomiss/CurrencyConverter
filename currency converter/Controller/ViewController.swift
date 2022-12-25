@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Charts
+import SwiftUI
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ChartViewDelegate {
     
     
     
@@ -25,25 +27,58 @@ class ViewController: UIViewController {
     @IBOutlet weak var toLabel: UILabel!
     
     
-    
-    
+   lazy var formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.timeZone = .current
+        formatter.locale = .current
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+        
+    }()
+   
+ 
+    var lineChart = LineChartView()
     var currencyManager = CurrencyManager()
     
     
     var from: String = "EUR"
     var to: String = "TRY"
     var amount: String = "0"
+    var result: ()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        amountText.delegate = self
-        currencyManager.delegate = self
        
         
+        updateChart()
+        lineChart.delegate = self
+        amountText.delegate = self
+        currencyManager.delegate = self
+       }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
+        lineChart.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 240)
+        lineChart.center = view.center
+        view.addSubview(lineChart)
+       
+       var entries = [ChartDataEntry]()
+        
+        for x in 0..<10 {
+            
+            entries.append(ChartDataEntry(x: Double(x), y: Double(x)))
+        }
+        
+        let set = LineChartDataSet(entries: entries)
+        
+        set.colors = ChartColorTemplates.material()
+        
+        let data = LineChartData(dataSet: set)
+        lineChart.data = data
     }
+    
     
     
     
@@ -59,6 +94,16 @@ class ViewController: UIViewController {
         }
     }
     
+    func updateChart () {
+       
+        let date = Date()
+        let endDate = formatter.string(from: date)
+        let startDate = Calendar.current.date(byAdding: .day, value: -9, to: date)
+        let startDatee = formatter.string(from: startDate ?? Date())
+        print(endDate)
+        print(startDatee)
+        result = currencyManager.fetchRatesForTimeframe(from: from, to: to, startDate: startDatee, endDate: endDate)
+        }
     
     
     @IBAction func amountChanged(_ sender: UITextField) {
@@ -91,7 +136,8 @@ class ViewController: UIViewController {
      
      func textFieldShouldReturn(_ textField: UITextField) -> Bool {
      amountText.endEditing(true)
-     currencyManager.fetchRates(from: from, to: to, amount: amount )
+     //currencyManager.fetchRates(from: from, to: to, amount: amount)
+         //updateChart()
      
      
      return true
@@ -119,7 +165,12 @@ class ViewController: UIViewController {
      func didFailWithError(error: Error) {
      print(error)
      }
-     
+         func didGetTimeframeRates(_ timeFrameRates: [String : Double]) {
+             DispatchQueue.main.async {
+             
+             print(timeFrameRates)
+             }
+         }
      func didUpdateCurrency(_ currencyManager: String) {
      
      DispatchQueue.main.async {
@@ -142,5 +193,23 @@ extension ViewController: FromCurrencySelectorDelegate, ToCurrencySelectorDelega
         self.toImage.text = toImage
         self.to = to
     }
+    
 }
 
+//struct ViewController_Previews: PreviewProvider {
+//
+//static var previews: some View {
+//       return ViewController()
+//    }
+//
+//    struct ContentView: UIViewControllerRepresentable {
+//
+//        func makeUIViewController(context: Context) -> ViewController {
+//             ViewController()
+//        }
+//
+//        func updateUIViewController(_ uiViewController: ViewController, context: Context) {
+//
+//        }
+//    }
+//}
