@@ -97,14 +97,15 @@ struct CurrencyManager {
                     let session = URLSession(configuration: .default)
 
                   let task = session.dataTask(with: url) { data, response, error in
-
-                        if error != nil {
+                     
+                  if error != nil {
                             print(error!)
                         } else {
                             if let safeData = data {
 
                                let timeFrameRates = parseJSONForTimeframe(currencyData: safeData)
-                                   
+                                   //print(timeFrameRates)
+                                
                                    self.delegate?.didGetTimeframeRates(timeFrameRates)
                                 }
                             }
@@ -142,7 +143,7 @@ struct CurrencyManager {
                 rates[date] = ratess
             }
             //print("Rates: \(rates)")
-    print(rates)
+    
             return rates
 
             } catch {
