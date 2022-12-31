@@ -2,7 +2,7 @@
 <br/>
 <p align="center">
   <a href="https://github.com/bgomiss/CurrencyConverter">
-    <img src="https://ibb.co/dD3DpGr" alt="Logo" width="80" height="80">
+    <img src="https://github.com/bgomiss/CurrencyConverter/blob/main/Screenshot%202022-12-31%20at%2020.37.02.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Currency Converter</h3>
@@ -38,7 +38,7 @@
 
 ## About The Project
 
-![Screen Shot](https://imgur.com/a/0rYBJeU)
+![GIF](https://github.com/bgomiss/CurrencyConverter/blob/main/ezgif.com-gif-maker-2.gif)
 
 This is a currency converter app with country flags and currency explanations in the second screen. The user may also search for the currencies they would like to use using the SearchBar at the top of the screen on the second screen. After the currencies selected the Line Chart on the main screen shows the exchange rates for the last 10 days. ENJOY!
 
