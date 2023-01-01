@@ -28,6 +28,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var toLabel: UILabel!
     
+    @IBOutlet weak var titleLabel: UILabel!
     
    lazy var formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -52,6 +53,23 @@ class ViewController: UIViewController, ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
+       
+        titleLabel.text = ""
+        var charIndex = 0.0
+        let titleText = "💱Currency Converter🪙"
+        for letter in titleText {
+            Timer.scheduledTimer(withTimeInterval: 0.1 * charIndex, repeats: false) { timer in
+                self.titleLabel.text?.append(letter)
+            }
+            charIndex += 1
+        }
+        
+        titleLabel.textAlignment = .center
         lineChart.delegate = self
         amountText.delegate = self
         currencyManager.delegate = self
@@ -104,7 +122,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         //amountText.endEditing(true)
         currencyManager.fetchRates(from: from, to: to, amount: amount )
-        updateChart()
+        
     }
     
     //@IBAction func editingChanged2(_ sender: UITextField) {
@@ -218,59 +236,61 @@ extension ViewController: FromCurrencySelectorDelegate, ToCurrencySelectorDelega
         fromLabel.text = from
         self.fromImage.text = fromImage
         self.from = from
+        updateChart()
         }
     func didGetCurrencyCode(to: String, toImage: String) {
         toLabel.text = to
         self.toImage.text = toImage
         self.to = to
+        updateChart()
     }
     
 }
-
-    //#if canImport(SwiftUI) && DEBUG
-    //import SwiftUI
-    //struct UIViewControllerPreview<ViewController: UIViewController>: UIViewControllerRepresentable {
-    //    let viewController: ViewController
-    //
-    //    init(_ builder: @escaping () -> ViewController) {
-    //        viewController = builder()
-    //    }
-    //
-    //    // MARK: - UIViewControllerRepresentable
-    //    func makeUIViewController(context: Context) -> ViewController {
-    //        viewController
-    //    }
-    //
-    //    func updateUIViewController(_ uiViewController: ViewController, context: UIViewControllerRepresentableContext<UIViewControllerPreview<ViewController>>) {
-    //        return
-    //    }
-    //}
-    //#endif
-    //
-    //#if canImport(SwiftUI) && DEBUG
-    //import SwiftUI
-    //
-    //let deviceNames: [String] = [
-    //    "iPhone SE",
-    //    "iPhone 11 Pro Max",
-    //    "iPhone 11",
-    //    "iPad Pro (11-inch)"
-    //]
-    //
-    //@available(iOS 13.0, *)
-    //struct ViewController_Preview: PreviewProvider {
-    //  static var previews: some View {
-    //
-    //      ForEach(deviceNames, id: \.self) { deviceName in
-    //      UIViewControllerPreview {
-    //        ViewController()
-    //      }.previewDevice(PreviewDevice(rawValue: deviceName))
-    //        .previewDisplayName(deviceName)
-    //      }
-    //      .previewDisplayName(/*@START_MENU_TOKEN@*/"Preview"/*@END_MENU_TOKEN@*/)
-    //
-    //
-    //
-    //  }
-    //}
-    //#endif
+//
+//    #if canImport(SwiftUI) && DEBUG
+//    import SwiftUI
+//    struct UIViewControllerPreview<ViewController: UIViewController>: UIViewControllerRepresentable {
+//        let viewController: ViewController
+//
+//        init(_ builder: @escaping () -> ViewController) {
+//            viewController = builder()
+//        }
+//
+//        // MARK: - UIViewControllerRepresentable
+//        func makeUIViewController(context: Context) -> ViewController {
+//            viewController
+//        }
+//
+//        func updateUIViewController(_ uiViewController: ViewController, context: UIViewControllerRepresentableContext<UIViewControllerPreview<ViewController>>) {
+//            return
+//        }
+//    }
+//    #endif
+//
+//    #if canImport(SwiftUI) && DEBUG
+//    import SwiftUI
+//
+//    let deviceNames: [String] = [
+//        "iPhone SE",
+//        "iPhone 11 Pro Max",
+//        "iPhone 11",
+//        "iPad Pro (11-inch)"
+//    ]
+//
+//    @available(iOS 13.0, *)
+//    struct ViewController_Preview: PreviewProvider {
+//      static var previews: some View {
+//
+//          ForEach(deviceNames, id: \.self) { deviceName in
+//          UIViewControllerPreview {
+//            ViewController()
+//          }.previewDevice(PreviewDevice(rawValue: deviceName))
+//            .previewDisplayName(deviceName)
+//          }
+//          .previewDisplayName(/*@START_MENU_TOKEN@*/"Preview"/*@END_MENU_TOKEN@*/)
+//
+//
+//
+//      }
+//    }
+//    #endif
