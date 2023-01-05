@@ -7,7 +7,7 @@
 
 import UIKit
 import Charts
-import SwiftUI
+
 
 
 class ViewController: UIViewController, ChartViewDelegate {
@@ -56,7 +56,6 @@ class ViewController: UIViewController, ChartViewDelegate {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
        
         titleLabel.text = ""
@@ -246,7 +245,7 @@ extension ViewController: FromCurrencySelectorDelegate, ToCurrencySelectorDelega
     }
     
 }
-//
+
 //    #if canImport(SwiftUI) && DEBUG
 //    import SwiftUI
 //    struct UIViewControllerPreview<ViewController: UIViewController>: UIViewControllerRepresentable {
