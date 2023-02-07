@@ -39,7 +39,10 @@ class ViewController: UIViewController, ChartViewDelegate {
         
     }()
    
- 
+    let fromDateLabel = UILabel()
+    let toDateLabel = UILabel()
+    let fromdatePicker = UIDatePicker()
+    let todatePicker = UIDatePicker()
     var lineChart = LineChartView()
     var currencyManager = CurrencyManager()
     
@@ -53,7 +56,48 @@ class ViewController: UIViewController, ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        fromdatePicker.translatesAutoresizingMaskIntoConstraints = false
+        todatePicker.translatesAutoresizingMaskIntoConstraints = false
+        fromDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        toDateLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(fromdatePicker)
+        view.addSubview(todatePicker)
+        view.addSubview(fromDateLabel)
+        view.addSubview(toDateLabel)
+        view.addSubview(fromdatePicker)
+
+        // Add constraints
+        let fromHorizontalConstraint = NSLayoutConstraint(item: fromdatePicker, attribute: .centerX, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .leading, multiplier: 1, constant: 100)
+        let fromVerticalConstraint = NSLayoutConstraint(item: fromdatePicker, attribute: .centerY, relatedBy: .equal, toItem: amountText2, attribute: .centerY, multiplier: 1, constant: 120)
+
+        let toHorizontalConstraint = NSLayoutConstraint(item: todatePicker, attribute: .left, relatedBy: .equal, toItem: fromdatePicker, attribute: .right, multiplier: 1, constant: 56)
+        let toVerticalConstraint = NSLayoutConstraint(item: todatePicker, attribute: .centerY, relatedBy: .equal, toItem: fromdatePicker, attribute: .centerY, multiplier: 1, constant: 0)
+        
+        let fromDateLabelHorizontal = NSLayoutConstraint(item: fromDateLabel, attribute: .centerX, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .leading, multiplier: 1, constant: 100)
+        let fromDateLabelVertical = NSLayoutConstraint(item: fromDateLabel, attribute: .centerY, relatedBy: .equal, toItem: amountText2, attribute: .centerY, multiplier: 1, constant: 80)
+        
+        let toDateLabelHorizontal = NSLayoutConstraint(item: toDateLabel, attribute: .left, relatedBy: .equal, toItem: fromDateLabel, attribute: .right, multiplier: 1, constant: 20)
+        let toDateLabelVertical = NSLayoutConstraint(item: toDateLabel, attribute: .centerY, relatedBy: .equal, toItem: amountText2, attribute: .centerY, multiplier: 1, constant: 80)
+        
+        view.addConstraints([fromHorizontalConstraint, fromVerticalConstraint, toVerticalConstraint, toHorizontalConstraint, fromDateLabelHorizontal, fromDateLabelVertical, toDateLabelHorizontal, toDateLabelVertical])
+        
+        fromdatePicker.locale = .autoupdatingCurrent
+        todatePicker.locale = .autoupdatingCurrent
+        fromdatePicker.datePickerMode = .date
+        todatePicker.datePickerMode = .date
+        let fromcurrentFont = fromDateLabel.font
+        let tocurrentFont = toDateLabel.font
+        fromDateLabel.font = UIFont.boldSystemFont(ofSize: fromcurrentFont!.pointSize)
+        toDateLabel.font = UIFont.boldSystemFont(ofSize: tocurrentFont!.pointSize)
+        fromdatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: -10, to: Date())
+        fromdatePicker.maximumDate = Calendar.current.date(byAdding: .day, value: 10, to: Date())
+        
+        fromDateLabel.text = "Choose a start Date"
+        toDateLabel.text = "Choose an end Date"
+        
+        
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
@@ -246,50 +290,3 @@ extension ViewController: FromCurrencySelectorDelegate, ToCurrencySelectorDelega
     
 }
 
-//    #if canImport(SwiftUI) && DEBUG
-//    import SwiftUI
-//    struct UIViewControllerPreview<ViewController: UIViewController>: UIViewControllerRepresentable {
-//        let viewController: ViewController
-//
-//        init(_ builder: @escaping () -> ViewController) {
-//            viewController = builder()
-//        }
-//
-//        // MARK: - UIViewControllerRepresentable
-//        func makeUIViewController(context: Context) -> ViewController {
-//            viewController
-//        }
-//
-//        func updateUIViewController(_ uiViewController: ViewController, context: UIViewControllerRepresentableContext<UIViewControllerPreview<ViewController>>) {
-//            return
-//        }
-//    }
-//    #endif
-//
-//    #if canImport(SwiftUI) && DEBUG
-//    import SwiftUI
-//
-//    let deviceNames: [String] = [
-//        "iPhone SE",
-//        "iPhone 11 Pro Max",
-//        "iPhone 11",
-//        "iPad Pro (11-inch)"
-//    ]
-//
-//    @available(iOS 13.0, *)
-//    struct ViewController_Preview: PreviewProvider {
-//      static var previews: some View {
-//
-//          ForEach(deviceNames, id: \.self) { deviceName in
-//          UIViewControllerPreview {
-//            ViewController()
-//          }.previewDevice(PreviewDevice(rawValue: deviceName))
-//            .previewDisplayName(deviceName)
-//          }
-//          .previewDisplayName(/*@START_MENU_TOKEN@*/"Preview"/*@END_MENU_TOKEN@*/)
-//
-//
-//
-//      }
-//    }
-//    #endif
