@@ -13,9 +13,6 @@ import Charts
 class ViewController: UIViewController, ChartViewDelegate {
    
     
-    
-    
-    
     @IBOutlet weak var amountText: UITextField!
     
     @IBOutlet weak var amountText2: UITextField!
@@ -55,72 +52,110 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        fromdatePicker.translatesAutoresizingMaskIntoConstraints = false
-        todatePicker.translatesAutoresizingMaskIntoConstraints = false
-        fromDateLabel.translatesAutoresizingMaskIntoConstraints = false
-        toDateLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(fromdatePicker)
-        view.addSubview(todatePicker)
-        view.addSubview(fromDateLabel)
-        view.addSubview(toDateLabel)
-        view.addSubview(fromdatePicker)
-
-        // Add constraints
-        let fromHorizontalConstraint = NSLayoutConstraint(item: fromdatePicker, attribute: .centerX, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .leading, multiplier: 1, constant: 100)
-        let fromVerticalConstraint = NSLayoutConstraint(item: fromdatePicker, attribute: .centerY, relatedBy: .equal, toItem: amountText2, attribute: .centerY, multiplier: 1, constant: 120)
-
-        let toHorizontalConstraint = NSLayoutConstraint(item: todatePicker, attribute: .left, relatedBy: .equal, toItem: fromdatePicker, attribute: .right, multiplier: 1, constant: 56)
-        let toVerticalConstraint = NSLayoutConstraint(item: todatePicker, attribute: .centerY, relatedBy: .equal, toItem: fromdatePicker, attribute: .centerY, multiplier: 1, constant: 0)
-        
-        let fromDateLabelHorizontal = NSLayoutConstraint(item: fromDateLabel, attribute: .centerX, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .leading, multiplier: 1, constant: 100)
-        let fromDateLabelVertical = NSLayoutConstraint(item: fromDateLabel, attribute: .centerY, relatedBy: .equal, toItem: amountText2, attribute: .centerY, multiplier: 1, constant: 80)
-        
-        let toDateLabelHorizontal = NSLayoutConstraint(item: toDateLabel, attribute: .left, relatedBy: .equal, toItem: fromDateLabel, attribute: .right, multiplier: 1, constant: 20)
-        let toDateLabelVertical = NSLayoutConstraint(item: toDateLabel, attribute: .centerY, relatedBy: .equal, toItem: amountText2, attribute: .centerY, multiplier: 1, constant: 80)
-        
-        view.addConstraints([fromHorizontalConstraint, fromVerticalConstraint, toVerticalConstraint, toHorizontalConstraint, fromDateLabelHorizontal, fromDateLabelVertical, toDateLabelHorizontal, toDateLabelVertical])
-        
-        fromdatePicker.locale = .autoupdatingCurrent
-        todatePicker.locale = .autoupdatingCurrent
-        fromdatePicker.datePickerMode = .date
-        todatePicker.datePickerMode = .date
-        let fromcurrentFont = fromDateLabel.font
-        let tocurrentFont = toDateLabel.font
-        fromDateLabel.font = UIFont.boldSystemFont(ofSize: fromcurrentFont!.pointSize)
-        toDateLabel.font = UIFont.boldSystemFont(ofSize: tocurrentFont!.pointSize)
-        fromdatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: -10, to: Date())
-        fromdatePicker.maximumDate = Calendar.current.date(byAdding: .day, value: 10, to: Date())
-        
-        fromDateLabel.text = "Choose a start Date"
-        toDateLabel.text = "Choose an end Date"
-        
-        
-        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
-       
-        titleLabel.text = ""
-        var charIndex = 0.0
-        let titleText = "💱Currency Converter🪙"
-        for letter in titleText {
-            Timer.scheduledTimer(withTimeInterval: 0.1 * charIndex, repeats: false) { timer in
-                self.titleLabel.text?.append(letter)
-            }
-            charIndex += 1
-        }
-        
-        titleLabel.textAlignment = .center
         lineChart.delegate = self
         amountText.delegate = self
         currencyManager.delegate = self
+        setupTitleLabel()
+        setupFromDatePicker()
+        setupToDatePicker()
+        setupFromDateLabel()
+        setupToDateLabel()
         updateChart()
         
         
        }
+  
+    func setupTitleLabel() {
+        
+        
+        titleLabel.text = ""
+                var charIndex = 0.0
+                let titleText = "💱Currency Converter🪙"
+                for letter in titleText {
+                    Timer.scheduledTimer(withTimeInterval: 0.1 * charIndex, repeats: false) { timer in
+                        self.titleLabel.text?.append(letter)
+                    }
+                    charIndex += 1
+                }
+
+        titleLabel.textAlignment = .center
+        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+       
+        NSLayoutConstraint.activate([
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50)
+        ])
+        
+    }
     
+    func setupFromDatePicker() {
+        view.addSubview(fromdatePicker)
+        
+        fromdatePicker.locale = .autoupdatingCurrent
+        fromdatePicker.datePickerMode = .date
+        fromdatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: -10, to: Date())
+        fromdatePicker.maximumDate = Calendar.current.date(byAdding: .day, value: 10, to: Date())
+        
+        fromdatePicker.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            fromdatePicker.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 100),
+            fromdatePicker.centerYAnchor.constraint(equalTo: amountText2.centerYAnchor, constant: 120)
+        ])
+    }
+        func setupToDatePicker() {
+            view.addSubview(todatePicker)
+            
+            todatePicker.locale = .autoupdatingCurrent
+            todatePicker.datePickerMode = .date
+            
+            todatePicker.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                todatePicker.leadingAnchor.constraint(equalTo: fromdatePicker.trailingAnchor, constant: 56),
+                todatePicker.centerYAnchor.constraint(equalTo: fromdatePicker.centerYAnchor, constant: 0)
+            ])
+        }
+    
+    
+    func setupFromDateLabel() {
+        view.addSubview(fromDateLabel)
+        
+        fromDateLabel.text = "Choose a start Date"
+        let fromcurrentFont = fromDateLabel.font
+        fromDateLabel.font = UIFont.boldSystemFont(ofSize: fromcurrentFont!.pointSize)
+        
+        fromDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            fromDateLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 100),
+         fromDateLabel.centerYAnchor.constraint(equalTo: amountText2.centerYAnchor, constant: 80)
+        ])
+    }
+    
+    func setupToDateLabel() {
+        view.addSubview(toDateLabel)
+        
+        toDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        toDateLabel.text = "Choose an end Date"
+        let tocurrentFont = toDateLabel.font
+        toDateLabel.font = UIFont.boldSystemFont(ofSize: tocurrentFont!.pointSize)
+        
+        NSLayoutConstraint.activate([
+            toDateLabel.leadingAnchor.constraint(equalTo: fromDateLabel.trailingAnchor, constant: 20),
+            toDateLabel.centerYAnchor.constraint(equalTo: amountText2.centerYAnchor, constant: 80)
+        ])
+        
+        
+        
+        
+        
+    }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
