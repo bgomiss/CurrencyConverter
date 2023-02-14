@@ -202,13 +202,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         currencyManager.fetchRates(from: from, to: to, amount: amount )
         
     }
-    
-    //@IBAction func editingChanged2(_ sender: UITextField) {
-    //    amount = sender.text!
-    //
-    //    //amountText.endEditing(true)
-    //    currencyManager.fetchRates(from: to, to: from, amount: amount )
-    // }
+
     
     @IBAction func didTapView(_ sender: UITapGestureRecognizer) {
         
@@ -291,7 +285,7 @@ class ViewController: UIViewController, ChartViewDelegate {
 //                 self.entries = timeFrameRates.map { ChartDataEntry(x: self.formatter.date(from: $0.key)!.timeIntervalSince1970 as Double, y: $0.value) }
                
                  //print(self.xAxis!)
-                 print(self.entries)
+                 //print(self.entries)
              DispatchQueue.main.async {
                  self.lineChart.notifyDataSetChanged()
 

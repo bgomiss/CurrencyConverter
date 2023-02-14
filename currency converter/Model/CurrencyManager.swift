@@ -52,8 +52,8 @@ struct CurrencyManager {
                let decodedData = try decoder.decode(CurrencyData.self, from: currencyData)
 
                let result = decodedData.result
-
                return String(format: "%.2f", result)
+               
 
 
            } catch {
@@ -77,7 +77,7 @@ struct CurrencyManager {
                     if let safeData = data {
                         
                         if let currency = parseJSONforConvert(currencyData: safeData) {
-                            //print(currency)
+                            
                             self.delegate?.didUpdateCurrency(currency)
                         }
                     }
@@ -104,7 +104,7 @@ struct CurrencyManager {
                             if let safeData = data {
 
                                let timeFrameRates = parseJSONForTimeframe(currencyData: safeData)
-                                   //print(timeFrameRates)
+                                  
                                 
                                    self.delegate?.didGetTimeframeRates(timeFrameRates)
                                 }
@@ -136,14 +136,14 @@ struct CurrencyManager {
 
         do {
             let decodedData = try decoder.decode(APIResult.self, from: currencyData)
-            
             var rates: [String: Double] = [:]
             for (date, rate) in decodedData.rates {
-                let ratess = rate.values.first
-                rates[date] = ratess
+                let firstRate = rate.values.first
+                rates[date] = firstRate
+                
+                
             }
-            //print("Rates: \(rates)")
-    
+           
             return rates
 
             } catch {

@@ -4,6 +4,14 @@
    <FileRef
       location = "group:currency converter.xcodeproj">
    </FileRef>
+   <Group
+      location = "group:"
+      name = "Products">
+      <FileRef
+         location = "build:currency converter.app"
+         assignedFileDataType = "com.apple.application-bundle">
+      </FileRef>
+   </Group>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
