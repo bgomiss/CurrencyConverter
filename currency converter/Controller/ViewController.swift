@@ -43,7 +43,8 @@ class ViewController: UIViewController, ChartViewDelegate {
     var lineChart = LineChartView()
     var currencyManager = CurrencyManager()
     
-    
+    var toDate: Date?
+    var fromDate: Date?
     var from: String = "EUR"
     var to: String = "TRY"
     var amount: String = "0"
@@ -63,6 +64,9 @@ class ViewController: UIViewController, ChartViewDelegate {
         setupToDateLabel()
         updateChart()
         
+        fromdatePicker.addTarget(self, action: #selector(fromDatePickerValueChanged), for: .valueChanged)
+        todatePicker.addTarget(self, action: #selector(toDatePickerValueChanged), for: .valueChanged)
+
         
        }
   
@@ -194,6 +198,17 @@ class ViewController: UIViewController, ChartViewDelegate {
       
         }
     
+    @objc func fromDatePickerValueChanged(_ sender: UIDatePicker) {
+        fromDate = sender.date
+        todatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: -10, to: fromDate!)
+        todatePicker.maximumDate = Calendar.current.date(byAdding: .day, value: 10, to: fromDate!)
+        print(fromDate!)
+    }
+    
+    @objc func toDatePickerValueChanged(_ sender: UIDatePicker) {
+        toDate = sender.date
+        print(toDate!)
+    }
     
     @IBAction func amountChanged(_ sender: UITextField) {
         amount = sender.text!
