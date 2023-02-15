@@ -49,7 +49,8 @@ class ViewController: UIViewController, ChartViewDelegate {
     var to: String = "TRY"
     var amount: String = "0"
     var entries = [ChartDataEntry]()
-   
+    var fromDateString: String?
+    var toDateString: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -201,18 +202,27 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     @objc func fromDatePickerValueChanged(_ sender: UIDatePicker) {
         fromDate = sender.date
-        let fromDateString = formatter.string(from: fromDate!)
+        fromDateString = formatter.string(from: fromDate!)
         todatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: -10, to: fromdatePicker.date)
         todatePicker.maximumDate = Calendar.current.date(byAdding: .day, value: 10, to: fromdatePicker.date)
-        print(fromDateString)
+        print(fromDateString!)
+        self.dismiss(animated: true)
+        
+
+                
+                
     }
     
     @objc func toDatePickerValueChanged(_ sender: UIDatePicker) {
         toDate = sender.date
-        let toDateString = formatter.string(from: toDate!)
-        print(toDateString)
-        fromdatePicker.date = Date()
-    }
+        toDateString = formatter.string(from: toDate!)
+        if let fromDateString = fromDateString, let toDateString = toDateString {
+                currencyManager.fetchRatesForTimeframe(from: from, to: to, startDate: fromDateString, endDate: toDateString)
+            }
+        self.dismiss(animated: true)
+        }
+        
+    
     
     @IBAction func amountChanged(_ sender: UITextField) {
         amount = sender.text!
