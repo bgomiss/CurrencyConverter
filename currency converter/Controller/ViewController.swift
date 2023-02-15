@@ -66,7 +66,10 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         fromdatePicker.addTarget(self, action: #selector(fromDatePickerValueChanged), for: .valueChanged)
         todatePicker.addTarget(self, action: #selector(toDatePickerValueChanged), for: .valueChanged)
-
+        
+        let currentDate = fromdatePicker.date
+                todatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: -10, to: currentDate)
+                todatePicker.maximumDate = Calendar.current.date(byAdding: .day, value: 10, to: currentDate)
         
        }
   
@@ -188,26 +191,27 @@ class ViewController: UIViewController, ChartViewDelegate {
     func updateChart () {
        
         let date = Date()
-        let endDate = formatter.string(from: date)
+        let endDateString = formatter.string(from: date)
         let startDate = Calendar.current.date(byAdding: .day, value: -9, to: date)
-        let startDatee = formatter.string(from: startDate ?? Date())
-        print(endDate)
-        print(startDatee)
+        let startDateString = formatter.string(from: startDate ?? Date())
        
-       currencyManager.fetchRatesForTimeframe(from: from, to: to, startDate: startDatee, endDate: endDate)
+       currencyManager.fetchRatesForTimeframe(from: from, to: to, startDate: startDateString, endDate: endDateString)
       
         }
     
     @objc func fromDatePickerValueChanged(_ sender: UIDatePicker) {
         fromDate = sender.date
-        todatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: -10, to: fromDate!)
-        todatePicker.maximumDate = Calendar.current.date(byAdding: .day, value: 10, to: fromDate!)
-        print(fromDate!)
+        let fromDateString = formatter.string(from: fromDate!)
+        todatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: -10, to: fromdatePicker.date)
+        todatePicker.maximumDate = Calendar.current.date(byAdding: .day, value: 10, to: fromdatePicker.date)
+        print(fromDateString)
     }
     
     @objc func toDatePickerValueChanged(_ sender: UIDatePicker) {
         toDate = sender.date
-        print(toDate!)
+        let toDateString = formatter.string(from: toDate!)
+        print(toDateString)
+        fromdatePicker.date = Date()
     }
     
     @IBAction func amountChanged(_ sender: UITextField) {
